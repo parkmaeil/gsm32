@@ -55,3 +55,4 @@ public class BoardController {
     }
 }
 // Restfull Service(API)
+// MySQL DBMS -> Database : gsm32
