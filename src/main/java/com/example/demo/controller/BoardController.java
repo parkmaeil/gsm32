@@ -16,21 +16,15 @@ public class BoardController {
     // http://localhost:8080/api/board
     @GetMapping("/board")
     public List<Board> getLists(){
-        Board board1=new Board(1, "자바", "자바","홍길동", new Date(), 1);
-        Board board2=new Board(2, "자바", "자바","홍길동", new Date(), 1);
-        Board board3=new Board(3, "자바", "자바","홍길동", new Date(), 1);
-        List<Board> list=new ArrayList<>();
-        list.add(board1);
-        list.add(board2);
-        list.add(board3);
-        return list; // list(Object)--MessageConverter->JSON : [{   },{   },{   }]
+       
+        return null; // list(Object)--MessageConverter->JSON : [{   },{   },{   }]
     }
     // GET : http://localhost:8080/api/board/2
     // GET : http://localhost:8080/api/board?id=2
     @GetMapping("/board/{id}")
     public Board getById(@PathVariable int id){
-        Board board2=new Board(2, "자바", "자바","홍길동", new Date(), 1);
-        return board2; // board2(Object)---> JSON : {     }
+
+        return null; // board2(Object)---> JSON : {     }
     }
     // POST : http://localhost:8080/api/board
     // Data : { title:"자바", content:"자바", writer:"홍길동" }
