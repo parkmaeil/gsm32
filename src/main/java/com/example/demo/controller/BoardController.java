@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Board;
+import com.example.demo.service.BoardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,12 +14,14 @@ import java.util.List;
 @RestController // View(jsp, HTML)
 @RequestMapping("/api")
 public class BoardController {
+
+    @Autowired
+    private BoardService boardService;
     // 게시판 보기(/boardList)
     // http://localhost:8080/api/board
     @GetMapping("/board")
     public List<Board> getLists(){
-       
-        return null; // list(Object)--MessageConverter->JSON : [{   },{   },{   }]
+        return boardService.findAll(); // list(Object)--MessageConverter->JSON : [{   },{   },{   }]
     }
     // GET : http://localhost:8080/api/board/2
     // GET : http://localhost:8080/api/board?id=2
@@ -30,8 +34,7 @@ public class BoardController {
     // Data : { title:"자바", content:"자바", writer:"홍길동" }
     @PostMapping("/board")
     public Board register(@RequestBody Board board){ // JSON->Board
-        // 저장?
-        return board;
+        return boardService.save(board);
     }
     // PUT : http://localhost:8080/api/board/{id}
     // Data : { title:"자바", content:"자바" }
