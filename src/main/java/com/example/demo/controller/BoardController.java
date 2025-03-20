@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.entity.Board;
 import com.example.demo.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,26 +23,25 @@ public class BoardController {
     // 게시판 보기(/boardList)
     // http://localhost:8080/api/board
     @GetMapping("/board")
-    public List<Board> getLists(){
-        return boardService.findAll(); // list(Object)--MessageConverter->JSON : [{   },{   },{   }]
+    public ResponseEntity<?> getLists(){
+        return ResponseEntity.ok(boardService.findAll());
+        //return new ResponseEntity<>(boardService.findAll(), HttpStatus.OK); // list(Object)--MessageConverter->JSON : [{   },{   },{   }]
     }
-    // GET : http://localhost:8080/api/board/2
+    // GET : http://localhost:8080/api/board/900
     // GET : http://localhost:8080/api/board?id=2
     @GetMapping("/board/{id}")
-    public Board getById(@PathVariable Long id){
+    public ResponseEntity<?> getById(@PathVariable Long id){
         Optional<Board> optional=boardService.findById(id);
-        Board board=null;
         if(optional.isPresent()){
-            board=optional.get();
-            return board;
+             return new ResponseEntity<>(optional.get(), HttpStatus.OK); // (데이터+상태정보)--->
         }
-        return null; // board2(Object)---> JSON : {     }
+        return new ResponseEntity<>("데이터가 없습니다",HttpStatus.NOT_FOUND); // board2(Object)---> JSON : {     }
     }
     // POST : http://localhost:8080/api/board
     // Data : { title:"자바", content:"자바", writer:"홍길동" }
     @PostMapping("/board")
-    public Board register(@RequestBody Board board){ // JSON->Board
-        return boardService.save(board);
+    public ResponseEntity<?> register(@RequestBody Board board){ // JSON->Board
+        return new ResponseEntity<>(boardService.save(board), HttpStatus.CREATED);
     }
     // PUT : http://localhost:8080/api/board/{id}
     // Data : { title:"자바", content:"자바" }
