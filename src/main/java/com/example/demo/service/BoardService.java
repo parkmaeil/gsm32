@@ -32,7 +32,12 @@ public class BoardService { // new BoardService();
         return boardRepository.findById(id).map(board->{
             board.setTitle(reqBoard.getTitle());
             board.setContent(reqBoard.getContent());
-            return boardRepository.save(board);
+            //return boardRepository.save(board); // 명시적으로 update
+            return board; // 수정(JPA 더티체킹)
         }).orElseThrow(() -> new EntityNotFoundException("Board not found with id: " + id));
     }
+
+   public void deleteById(Long id){
+        
+   }
 }
