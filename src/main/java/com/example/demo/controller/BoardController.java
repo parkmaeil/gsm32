@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Board;
 import com.example.demo.service.BoardService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,9 +47,8 @@ public class BoardController {
     // PUT : http://localhost:8080/api/board/{id}
     // Data : { title:"자바", content:"자바" }
     @PutMapping("/board/{id}")
-    public Board modify(@PathVariable int id, @RequestBody Board board){
-        // 수정?
-        return board;
+    public ResponseEntity<?> modify(@PathVariable Long id, @RequestBody Board reqBoard){
+        return new ResponseEntity<>(boardService.save(id, reqBoard),HttpStatus.OK);
     }
 
     // DELETE : http://localhost:8080/api/board/{id}
@@ -56,6 +56,11 @@ public class BoardController {
     public int remove(@PathVariable int id){
         // 삭제?
         return 1;
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<?> exceptionHandler(EntityNotFoundException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
 }
 // Restfull Service(API)
