@@ -53,9 +53,9 @@ public class BoardController {
 
     // DELETE : http://localhost:8080/api/board/{id}
     @DeleteMapping("/board/{id}")
-    public int remove(@PathVariable int id){
-        // 삭제?
-        return 1;
+    public ResponseEntity<?> remove(@PathVariable Long id){
+        boardService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
@@ -65,3 +65,9 @@ public class BoardController {
 }
 // Restfull Service(API)
 // MySQL DBMS -> Database : gsm32
+/*
+@DeleteMapping("/board/{id}")
+public ResponseEntity<Void> deleteBoard(@PathVariable Long id) {
+    boardService.deleteById(id);
+    return ResponseEntity.noContent().build(); // 204 No Content
+}*/

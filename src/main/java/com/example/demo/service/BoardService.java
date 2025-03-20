@@ -37,7 +37,10 @@ public class BoardService { // new BoardService();
         }).orElseThrow(() -> new EntityNotFoundException("Board not found with id: " + id));
     }
 
-   public void deleteById(Long id){
-        
-   }
+    public void deleteById(Long id) {
+        Board board=boardRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Board not found with id: " + id));
+        boardRepository.delete(board);
+        //boardRepository.deleteById(id);
+    }
 }
