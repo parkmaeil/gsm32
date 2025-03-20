@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 // 클라이언트의 요청(URL)을 받는 작업
 @RestController // View(jsp, HTML)
@@ -26,8 +27,13 @@ public class BoardController {
     // GET : http://localhost:8080/api/board/2
     // GET : http://localhost:8080/api/board?id=2
     @GetMapping("/board/{id}")
-    public Board getById(@PathVariable int id){
-
+    public Board getById(@PathVariable Long id){
+        Optional<Board> optional=boardService.findById(id);
+        Board board=null;
+        if(optional.isPresent()){
+            board=optional.get();
+            return board;
+        }
         return null; // board2(Object)---> JSON : {     }
     }
     // POST : http://localhost:8080/api/board

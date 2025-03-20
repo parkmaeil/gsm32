@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BoardService { // new BoardService();
@@ -20,5 +21,9 @@ public class BoardService { // new BoardService();
 
     public Board save(Board board){
         return boardRepository.save(board); // insert ~
+    }
+
+    public Optional<Board> findById(Long id){
+       return boardRepository.findById(id); // where id=
     }
 }
