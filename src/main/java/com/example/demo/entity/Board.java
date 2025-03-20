@@ -23,7 +23,13 @@ public class Board { // 번호(PK), 제목, 내용, 작성자....
 
     private String content;
     private String writer;
-    private LocalDateTime createdAt; //created_at
-    private int count;
+    private LocalDateTime createdAt; // null
+
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt=LocalDateTime.now();
+    }
+
+    private int count; // 0
     //
 }
