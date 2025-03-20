@@ -34,6 +34,7 @@ public class BoardController {
     public ResponseEntity<?> getById(@PathVariable Long id){
         Optional<Board> optional=boardService.findById(id);
         if(optional.isPresent()){
+             boardService.addCount(id);
              return new ResponseEntity<>(optional.get(), HttpStatus.OK); // (데이터+상태정보)--->
         }
         return new ResponseEntity<>("데이터가 없습니다",HttpStatus.NOT_FOUND); // board2(Object)---> JSON : {     }

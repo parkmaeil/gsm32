@@ -43,4 +43,12 @@ public class BoardService { // new BoardService();
         boardRepository.delete(board);
         //boardRepository.deleteById(id);
     }
+    //조회수 증가 메서드
+    public void addCount(Long id) {
+        Board board=boardRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Board not found with id: " + id));
+        board.setCount(board.getCount()+1);
+        boardRepository.save(board);
+        //boardRepository.deleteById(id);
+    }
 }
