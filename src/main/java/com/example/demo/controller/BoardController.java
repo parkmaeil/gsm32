@@ -39,6 +39,17 @@ public class BoardController {
         }
         return new ResponseEntity<>("데이터가 없습니다",HttpStatus.NOT_FOUND); // board2(Object)---> JSON : {     }
     }
+
+    @GetMapping("/board/{id}/{title}")
+    public ResponseEntity<?> getByTitle(@PathVariable Long id, @PathVariable String title){
+        Optional<Board> optional=boardService.findByTitle(title);
+        if(optional.isPresent()){
+            boardService.addCount(id);
+            return new ResponseEntity<>(optional.get(), HttpStatus.OK); // (데이터+상태정보)--->
+        }
+        return new ResponseEntity<>("데이터가 없습니다",HttpStatus.NOT_FOUND); // board2(Object)---> JSON : {     }
+    }
+
     // POST : http://localhost:8080/api/board
     // Data : { title:"자바", content:"자바", writer:"홍길동" }
     @PostMapping("/board")
