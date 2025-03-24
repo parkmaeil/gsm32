@@ -21,13 +21,14 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     public Optional<Board> findByTitle(String title);
     // JPQL : select b from Board b where b.title=?1 and b.aaa=:aaa
     // 3. JPQL(Entity) > SQL(Table)
-    @Query("select b from Board b where b.title=:aaa")
-    public Optional<Board> getTitle(@Param("aaa") String title);
+    @Query("select b from Board b where b.title=?1")
+    public Optional<Board> getTitle(String title);
     // 4. Table 기준 SQL
     @Query(value = "select * from board where title=?1", nativeQuery = true)
     public Optional<Board> searchTitle(String title);
-    //5. Querydsl
-
+    // 5. Querydsl(동적쿼리생성, Java 기반 메서드를 이용한 쿼리 생성)
+    // Board board=?;
+    // board.from(board).where( ? )
 }
 // EntityManagerFactory
 

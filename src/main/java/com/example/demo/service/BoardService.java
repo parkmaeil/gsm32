@@ -28,7 +28,7 @@ public class BoardService { // new BoardService();
        return boardRepository.findById(id); // where id=
     }
     public Optional<Board> findByTitle(String title){
-        return boardRepository.searchTitle(title); // where title=
+        return boardRepository.getTitle(title); // where title=
     }
 
     public Board save(Long id, Board reqBoard){
