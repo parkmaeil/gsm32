@@ -22,7 +22,8 @@ public class Customer {
     private int age;
 
     // 리뷰의 관계
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL
+               ,fetch = FetchType.LAZY)
     private List<Review> reviews;
 
 }
