@@ -17,6 +17,6 @@ public class BookDTO {
     private int price;
     private String author;
     private int page;
-    private List<Review> reviews;
+    private List<ReviewDTO> reviews; //null
 }
 // {       [{    },{    }] }
