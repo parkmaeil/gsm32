@@ -19,9 +19,9 @@ public class BookService {
    @Transactional(readOnly = true)
    public List<BookDTO> getAllLists(){
        // 순환참조 문제를 해결 ? -> DTO
-       //List<Book> books=bookRepository.findAll(); // 1번 SQL
+       List<Book> books=bookRepository.findAll(); // 1번 SQL
        //List<Book> books=bookRepository.findWithBookReviews();
-       List<Book> books=bookRepository.findAllWithReviewsAndCustomer();
+       //List<Book> books=bookRepository.findAllWithReviewsAndCustomer();
        System.out.print(books.size()); //5
        return books.stream().map(book->{
            //                       N+1 문제 발생?

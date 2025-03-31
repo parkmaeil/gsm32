@@ -17,7 +17,7 @@ public interface BookRepository extends JpaRepository<Book, Long > {
    @Query("select distinct b from Book b LEFT JOIN FETCH b.reviews")
    public List<Book> findWithBookReviews();
    // 2. @EntityGraph
-   @EntityGraph(attributePaths = {"reviews"})
+   @EntityGraph(attributePaths = {"reviews","reviews.customer"})
    public List<Book> findAll(); // 자동생성 ?
 
    // Book, Review, Customer
