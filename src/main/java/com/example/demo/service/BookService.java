@@ -22,7 +22,10 @@ public class BookService {
    public List<BookDTO> getAllLists(){
        // 순환참조 문제를 해결 ? -> DTO
        List<Book> books=bookRepository.findAll(); // 1번 SQL
+       //List<Book> books=bookRepository.findWithBookReviews();
+       System.out.print(books.size()); //5
        return books.stream().map(book->{
+           //                       N+1 문제 발생?
           List<ReviewDTO> reviews=book.getReviews().stream().map((review)->{
              return new ReviewDTO(review.getId(), review.getCost(),review.getContent(), review.getCreatedAt());
           }).toList();
