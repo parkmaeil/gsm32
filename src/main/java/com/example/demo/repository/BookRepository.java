@@ -1,7 +1,6 @@
 package com.example.demo.repository;
 
 import com.example.demo.entity.Book;
-import com.example.demo.entity.BookReviewDTO;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

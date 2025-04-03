@@ -1,9 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.*;
+import com.example.demo.payload.BookDTO;
+import com.example.demo.payload.CustomerDTO;
+import com.example.demo.payload.ReviewDTO;
 import com.example.demo.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

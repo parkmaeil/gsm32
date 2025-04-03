@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.Book;
-import com.example.demo.entity.BookDTO;
+import com.example.demo.payload.BookDTO;
 import com.example.demo.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
