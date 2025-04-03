@@ -30,3 +30,11 @@ INSERT INTO cart (quantity, cartdate, customer_id, book_id) VALUES
 (2, DATE_SUB(NOW(), INTERVAL 2 DAY), 3, 1),  -- 유관순 → 자바의 정석
 (1, DATE_SUB(NOW(), INTERVAL 1 DAY), 4, 2),  -- 장보고 → 스프링 입문
 (2, NOW(),                      5, 4);  -- 안중근 → React 제대로 배우기
+
+
+select *
+from customer c
+left join cart ct
+on c.id=ct.customer_id
+left join book b
+on b.id=ct.book_id;
