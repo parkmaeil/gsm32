@@ -37,4 +37,5 @@ from customer c
 left join cart ct
 on c.id=ct.customer_id
 left join book b
-on b.id=ct.book_id;
+on b.id=ct.book_id
+where c.username='user1'
