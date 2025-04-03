@@ -23,4 +23,9 @@ public class Book { //책(1) - 리뷰(N) - BookDTO
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL,
                fetch = FetchType.LAZY)
     private List<Review> reviews; // 1번 책에 대한 리뷰
+
+    // Book(1) - Cart(N)
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL,
+                fetch = FetchType.LAZY)
+    private List<Cart> carts;
 }

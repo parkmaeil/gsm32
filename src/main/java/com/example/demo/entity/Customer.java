@@ -26,4 +26,8 @@ public class Customer {
                ,fetch = FetchType.LAZY)
     private List<Review> reviews;
 
+    // Customer(1) - Cart(N)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL
+                ,fetch = FetchType.LAZY)
+    private List<Cart> carts; //table의 컬럼이 아니다
 }
