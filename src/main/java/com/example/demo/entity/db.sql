@@ -18,3 +18,15 @@ INSERT INTO review (cost, content, createdat, book_id, customer_id) VALUES
 (3, '조금 어렵지만 괜찮아요.', NOW(), 2, 3),
 (5, '실무에 도움이 많이 됩니다.', NOW(), 3, 4),
 (2, '기대에 못 미쳤어요.', NOW(), 5, 5);
+
+INSERT INTO cart (quantity, cartdate, customer_id, book_id) VALUES
+(1, DATE_SUB(NOW(), INTERVAL 9 DAY), 1, 1),  -- 홍길동 → 자바의 정석
+(2, DATE_SUB(NOW(), INTERVAL 8 DAY), 2, 2),  -- 이순신 → 스프링 입문
+(1, DATE_SUB(NOW(), INTERVAL 7 DAY), 3, 3),  -- 유관순 → JPA 완전 정복
+(3, DATE_SUB(NOW(), INTERVAL 6 DAY), 4, 4),  -- 장보고 → React 제대로 배우기
+(2, DATE_SUB(NOW(), INTERVAL 5 DAY), 5, 5),  -- 안중근 → AI 서비스 구축
+(1, DATE_SUB(NOW(), INTERVAL 4 DAY), 1, 3),  -- 홍길동 → JPA 완전 정복
+(1, DATE_SUB(NOW(), INTERVAL 3 DAY), 2, 5),  -- 이순신 → AI 서비스 구축
+(2, DATE_SUB(NOW(), INTERVAL 2 DAY), 3, 1),  -- 유관순 → 자바의 정석
+(1, DATE_SUB(NOW(), INTERVAL 1 DAY), 4, 2),  -- 장보고 → 스프링 입문
+(2, NOW(),                      5, 4);  -- 안중근 → React 제대로 배우기
