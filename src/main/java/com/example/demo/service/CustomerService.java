@@ -20,7 +20,8 @@ public class CustomerService {
 
     @Transactional(readOnly = true)
     public List<CustomerCartDTO> getCustomersWithCarts(String username){
-        List<Customer> customers=customerRepository.findAllWithCartsAndBooks(username);
+        //List<Customer> customers=customerRepository.findAllWithCartsAndBooks(username);
+        List<Customer> customers=customerRepository.findByUsername(username);
         // Book->BookInfoDTO
         // Cart->CartDTO
         // Customer->CustomerCartDTO

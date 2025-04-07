@@ -20,7 +20,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
            """)
    public List<Customer> findAllWithCartsAndBooks(String username);
 
-   // EntityGraph
+   // EntityGraph : Query Method
    @EntityGraph(attributePaths = {"carts","carts.book"})
-   public List<Customer> findAll();
+   public List<Customer> findByUsername(String username);
 }
