@@ -19,8 +19,8 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
 
     @Transactional(readOnly = true)
-    public List<CustomerCartDTO> getCustomersWithCarts(){
-        List<Customer> customers=customerRepository.findAllWithCartsAndBooks();
+    public List<CustomerCartDTO> getCustomersWithCarts(String username){
+        List<Customer> customers=customerRepository.findAllWithCartsAndBooks(username);
         // Book->BookInfoDTO
         // Cart->CartDTO
         // Customer->CustomerCartDTO
@@ -30,9 +30,11 @@ public class CustomerService {
                 BookInfoDTO bookInfoDTO=new BookInfoDTO(book.getTitle(), book.getAuthor(), book.getPrice());
                 return new CartDTO(cart.getQuantity(), cart.getCartDate(), bookInfoDTO);
             }).toList();
-          return new CustomerCartDTO(customer.getUsername(), customer.getName(), customer.getAge(), cartDTOS);
+               return new CustomerCartDTO(customer.getUsername(), customer.getName(), customer.getAge(), cartDTOS);
         }).toList();
     }
-
 }
+/*
+   JWT
+ */
 
